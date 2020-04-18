@@ -5,6 +5,17 @@ docker exec -it postgres-docker bash
 psql -U postgres
 
 CREATE TABLE public.persons (id int PRIMARY KEY, lastName varchar(255), firstName varchar(255));
+INSERT INTO public.persons 
+    (id, firstname, lastname, address)
+VALUES
+    (1, 'Luke', 'Skywalker', 'Tatooine'),
+    (2, 'Leia', 'Organa', 'Alderaan'),
+    (3, 'Han', 'Solo', 'Corellia');
 
+docker build -t dkk-postgres-image .
 
-docker build -t my-postgres-image .
+docker run -d --name my-postgres-container -p 5555:5432 dkk-postgres-image
+
+docker stop dkk-postgres-container
+docker container start dkk-postgres-container
+docker container inspect dkk-postgres-container
