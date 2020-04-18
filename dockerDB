@@ -5,3 +5,6 @@ docker exec -it postgres-docker bash
 psql -U postgres
 
 CREATE TABLE public.persons (id int PRIMARY KEY, lastName varchar(255), firstName varchar(255));
+
+
+docker build -t my-postgres-image .
