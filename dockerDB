@@ -1,6 +1,5 @@
 docker pull postgres
 docker run --name postgres-docker -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
-
 docker exec -it postgres-docker bash
 psql -U postgres
 
@@ -12,10 +11,10 @@ VALUES
     (2, 'Leia', 'Organa', 'Alderaan'),
     (3, 'Han', 'Solo', 'Corellia');
 
+// With Docker FIle
+
 docker build -t dkk-postgres-image .
-
-docker run -d --name my-postgres-container -p 5555:5432 dkk-postgres-image
-
+docker run -d --name dkk-postgres-container -p 5555:5432 dkk-postgres-image
 docker stop dkk-postgres-container
 docker container start dkk-postgres-container
 docker container inspect dkk-postgres-container
